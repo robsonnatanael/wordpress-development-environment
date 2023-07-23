@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  mysql:
+    container_name: ${MYSQL_CONTAINER_NAME}
+    image: mysql:latest
+    ports:
+      - ${MYSQL_PORT}:${MYSQL_EXTERNAL_PORT}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./services/db-data:/var/lib/mysql
+    networks:
+      - wp
+
+  phpmyadmin:
+    container_name: ${PHPMYADMIN_CONTAINER_NAME}
+    image: phpmyadmin:latest
+    ports:
+      - ${PHPMYADMIN_PORT}:${PHPMYADMIN_EXTERNAL_PORT}
+    environment:
+      - PMA_ARBITRARY=1
+    networks:
+      - wp
+
+  wordpress:
+    container_name: ${WORDPRESS_CONTAINER_NAME}
+    image: wordpress:latest
+    ports:
+      - ${WORDPRESS_PORT}:${WORDPRESS_EXTERNAL_PORT}
+    environment:
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_DEBUG: ${WORDPRESS_DEBUG}
+    volumes:
+      - ./services/app:/var/www/html
+    networks:
+      - wp
+
+networks:
+  wp:
+    driver: bridge
