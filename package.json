@@ -1,0 +1,20 @@
+{
+  "name": "wordpress-development-environment",
+  "version": "0.1.0",
+  "description": "environment for developing WordPress themes and plugins",
+  "repository": "git@github.com:robsonnatanael/wordpress-development-environment.git",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "postinstall": "husky install",
+    "release": "semantic-release"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "husky": "^8.0.3",
+    "semantic-release": "^22.0.8"
+  }
+}
