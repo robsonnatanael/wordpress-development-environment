@@ -1,6 +1,6 @@
 {
   "name": "wordpress-development-environment",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "environment for developing WordPress themes and plugins",
   "repository": "git@github.com:robsonnatanael/wordpress-development-environment.git",
   "license": "MIT",
