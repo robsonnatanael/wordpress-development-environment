@@ -28,7 +28,7 @@ services:
 
   wordpress:
     container_name: ${WORDPRESS_CONTAINER_NAME}
-    image: wordpress:latest
+    build: .
     ports:
       - ${WORDPRESS_PORT}:${WORDPRESS_EXTERNAL_PORT}
     environment:
