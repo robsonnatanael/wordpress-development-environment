@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   mysql:
     container_name: ${MYSQL_CONTAINER_NAME}
@@ -12,7 +10,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
-      - ./services/db-data:/var/lib/mysql
+      - wordpress-database:/var/lib/mysql
     networks:
       - wp
 
@@ -28,7 +26,11 @@ services:
 
   wordpress:
     container_name: ${WORDPRESS_CONTAINER_NAME}
-    build: .
+    build:
+      context: .
+      args:
+        USER_ID: ${USER_ID:-1000}
+        GROUP_ID: ${GROUP_ID:-1000}
     ports:
       - ${WORDPRESS_PORT}:${WORDPRESS_EXTERNAL_PORT}
     environment:
@@ -45,3 +47,6 @@ services:
 networks:
   wp:
     driver: bridge
+
+volumes:
+  wordpress-database:
