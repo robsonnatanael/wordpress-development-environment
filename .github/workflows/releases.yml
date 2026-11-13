@@ -9,15 +9,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
-          node-version: "^20.9.0"
+          node-version: 24
 
       - name: install dependencies
-        run: yarn install
+        run: npm install
 
       - name: run release
-        run: yarn release
+        run: npm run release
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

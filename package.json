@@ -9,12 +9,15 @@
     "postinstall": "husky install",
     "release": "semantic-release"
   },
+  "engines": {
+    "node": "24.x"
+  },
   "devDependencies": {
-    "@commitlint/cli": "^18.4.3",
-    "@commitlint/config-conventional": "^18.4.3",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
-    "husky": "^8.0.3",
-    "semantic-release": "^22.0.8"
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
+    "@semantic-release/changelog": "^21.2.4",
+    "@semantic-release/git": "^11.0.1",
+    "husky": "^9.1.7",
+    "semantic-release": "^25.0.9"
   }
 }

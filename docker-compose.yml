@@ -41,7 +41,16 @@ services:
       WORDPRESS_CONFIG_EXTRA: |
         define('FS_METHOD', 'direct');
     volumes:
-      - ./services/app:/var/www/html:z
+      # 1. WordPress Base (Core, wp-config, uploads, 3rd party plugins)
+      - ./core:/var/www/html:z
+
+      # 2. Your themes under development:
+      # Mounts the 'src/' content of your theme directly into the theme folder in WordPress
+      - ./workspace/themes/${DEV_THEME}/src:/var/www/html/wp-content/themes/${DEV_THEME}
+
+      # 3. Your plugins under development (Example, when applicable):
+      - ./workspace/plugins/${DEV_PLUGIN}:/var/www/html/wp-content/plugins/${DEV_PLUGIN}
+
     networks:
       - network
 
