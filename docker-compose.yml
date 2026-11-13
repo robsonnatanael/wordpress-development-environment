@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   mysql:
     container_name: ${MYSQL_CONTAINER_NAME}
@@ -12,9 +10,9 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
-      - ./services/db-data:/var/lib/mysql
+      - database:/var/lib/mysql
     networks:
-      - wp
+      - network
 
   phpmyadmin:
     container_name: ${PHPMYADMIN_CONTAINER_NAME}
@@ -24,11 +22,13 @@ services:
     environment:
       - PMA_ARBITRARY=1
     networks:
-      - wp
+      - network
 
   wordpress:
     container_name: ${WORDPRESS_CONTAINER_NAME}
-    build: .
+    build:
+      context: .
+    user: "0:0"
     ports:
       - ${WORDPRESS_PORT}:${WORDPRESS_EXTERNAL_PORT}
     environment:
@@ -37,11 +37,17 @@ services:
       WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
       WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
       WORDPRESS_DEBUG: ${WORDPRESS_DEBUG}
+      # skips strict file ownership verification
+      WORDPRESS_CONFIG_EXTRA: |
+        define('FS_METHOD', 'direct');
     volumes:
-      - ./services/app:/var/www/html
+      - ./services/app:/var/www/html:z
     networks:
-      - wp
+      - network
 
 networks:
-  wp:
+  network:
     driver: bridge
+
+volumes:
+  database:

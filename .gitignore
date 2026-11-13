@@ -1,3 +1,25 @@
+# Ignora a pasta services
 /services/*
+
+# Desbloqueia o caminho até wp-content
+!/services/app/
+/services/app/*
+!/services/app/wp-content/
+/services/app/wp-content/*
+
+# Desbloqueia os subdiretórios de wp-content
+!/services/app/wp-content/plugins/
+/services/app/wp-content/plugins/*
+
+!/services/app/wp-content/themes/
+/services/app/wp-content/themes/*
+
+!/services/app/wp-content/uploads/
+/services/app/wp-content/uploads/*
+
+# Mantém todos os .gitkeep rastreados (deve vir por último)
+!/services/**/.gitkeep
+
 .env
 node_modules
+.backups
