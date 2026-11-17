@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
+    "bestzip",
     "filesize",
     "libzip",
     "mysql",
@@ -7,6 +8,7 @@
     "phpmyadmin",
     "sgbd",
     "usermod",
-    "wordpress"
+    "wordpress",
+    "wpcs"
   ]
 }
