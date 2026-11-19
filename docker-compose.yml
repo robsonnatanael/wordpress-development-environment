@@ -49,7 +49,7 @@ services:
       - ./workspace/themes/${DEV_THEME}/src:/var/www/html/wp-content/themes/${DEV_THEME}
 
       # 3. Your plugins under development (Example, when applicable):
-      - ./workspace/plugins/${DEV_PLUGIN}:/var/www/html/wp-content/plugins/${DEV_PLUGIN}
+      - ./workspace/plugins/${DEV_PLUGIN}/src:/var/www/html/wp-content/plugins/${DEV_PLUGIN}
 
     networks:
       - network
